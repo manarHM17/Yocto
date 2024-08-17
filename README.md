@@ -60,7 +60,7 @@ bitbake-layers create-layer meta-deviceManagement
 Navigate to the `build` directory and add your new layer:
 
 ```bash
-bitbake-layers add-layer ../meta-deviceManagement
+bitbake-layers add-layer ~/Yocto_Folder/meta-deviceManagement
 bitbake-layers add-layer ~/Yocto_Folder/meta-openembedded/meta-oe
 bitbake-layers add-layer ~/Yocto_Folder/meta-openembedded/meta-python
 ```
