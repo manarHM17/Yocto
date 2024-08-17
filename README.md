@@ -87,3 +87,8 @@ mkdir deviceManagement grpcio
 - **grpcio**: Add the gRPC recipe in `grpcio/python3-grpcio_1.45.0.bb`.
 
 ---
+### Build the recipe 
+ ```bash
+cd ~/Yocto_Folder/poky/build
+bitbake deviceManagement
+```
