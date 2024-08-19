@@ -54,7 +54,11 @@ Navigate to your `Yocto_Folder` and create a new layer for your project:
 ```bash
 bitbake-layers create-layer meta-deviceManagement
 ```
-
+clonner meta-openembedded ou se trouve meta-oe et meta-python et checkout avec kirkstone 
+```bash
+git clone git://git.openembedded.org/meta-openembedded
+git checkout kirkstone 
+```
 ## Add the Layer to Your Build
 
 Navigate to the `build` directory and add your new layer:
