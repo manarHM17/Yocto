@@ -56,7 +56,7 @@ bitbake-layers create-layer meta-deviceManagement
 ```
 clonner meta-openembedded ou se trouve meta-oe et meta-python et checkout avec kirkstone 
 ```bash
-git clone git://git.openembedded.org/meta-openembedded
+git clone https://git.openembedded.org/meta-openembedded
 git checkout kirkstone 
 ```
 ## Add the Layer to Your Build
