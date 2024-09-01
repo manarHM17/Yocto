@@ -1,0 +1,135 @@
+syntax = "proto3";
+package IotDeviceManagement2;
+
+service InitialConfiguration {
+  rpc RegisterDevice(RegisterDeviceRequest) returns (RegisterDeviceResponse);
+  rpc UpdateOwnDevice(UpdateOwnDeviceRequest) returns (UpdateOwnDeviceResponse);
+  rpc GetDeviceIdByDeviceName(GetDeviceIdByDeviceNameRequest) returns (GetDeviceIdByDeviceNameResponse);
+  rpc ConfigureNetwork (ConfigureNetworkRequest) returns (ConfigureNetworkResponse);
+  rpc DeleteDevice(DeleteDeviceRequest) returns (DeleteDeviceResponse);
+
+}
+service SystemStatusService {
+    rpc GetSystemStatus (SystemStatusRequest) returns (SystemStatusResponse);
+    rpc GetLastRecord (GetLastRecordRequest) returns (GetLastRecordResponse);
+}
+service FirmwareConfiguration {
+    // Method to get the current firmware version installed on the device
+    rpc GetCurrentFirmwareVersion(FirmwareRequest) returns (FirmwareResponse);
+
+    // Method to update the firmware by transmitting the latest version to the client
+    rpc UpdateFirmware(UpdateFirmwareRequest) returns (UpdateFirmwareResponse);
+
+    // Method to set the new firmware version in the database
+     rpc SetFirmwareVersion(SetFirmwareVersionRequest) returns (SetFirmwareVersionResponse);
+}
+
+
+
+message RegisterDeviceRequest {
+  string serial_number = 1;
+  string name = 2;
+  string type = 3;
+  string location = 4;
+  string owner = 5;
+  string os_type = 6;
+}
+
+message RegisterDeviceResponse {
+  string message = 1;
+  int32 device_id = 2;
+}
+
+message UpdateOwnDeviceRequest {
+  int32 device_id = 1;
+  string name = 2;
+  string owner = 3;
+  string os_type = 4;
+  string location = 5;
+}
+
+message UpdateOwnDeviceResponse {
+  string message = 1;
+}
+
+message GetDeviceIdByDeviceNameRequest {
+  string device_name = 1;
+}
+
+message GetDeviceIdByDeviceNameResponse {
+  int32 device_id = 1;
+}
+
+
+// Messages for ConfigureNetwork
+message ConfigureNetworkRequest {
+  int32 device_id = 1;
+  string ssid = 2;
+  string wifi_password = 3;
+  string ip_address = 4;
+}
+
+message ConfigureNetworkResponse {
+  string message = 1;
+}
+
+
+
+message SystemStatusRequest {
+    int32 device_id = 1;
+    string cpu_usage = 2;
+    string memory_usage = 3;
+    string disk_space = 4;
+}
+
+message SystemStatusResponse {
+
+    string message = 1;
+}
+message GetLastRecordRequest {
+    int32 device_id = 1;
+}
+
+message GetLastRecordResponse {
+    string cpu_usage = 1;
+    string memory_usage = 2;
+    string disk_space = 3;
+    string timestamp = 4;
+    string message = 5;
+}
+message FirmwareRequest {
+    int32 device_id = 1;
+}
+
+message FirmwareResponse {
+    string current_version = 1;
+}
+message UpdateFirmwareRequest {
+  int32 device_id = 1;
+}
+
+message UpdateFirmwareResponse {
+  bool success = 1;
+  string message = 2;
+  string firmware_version = 3;
+  bytes firmware_binary_data = 4;
+}
+
+
+message SetFirmwareVersionRequest {
+  int32 device_id = 1;
+  string firmware_version = 2; // Ensure this field matches with client and server code
+}
+
+message SetFirmwareVersionResponse {
+  bool success = 1;
+  string message = 2;
+}
+message DeleteDeviceRequest {
+    int32 device_id = 1;
+}
+
+message DeleteDeviceResponse {
+    bool success = 1;
+    string message = 2;
+}
